@@ -1,5 +1,16 @@
 import 'package:flutter/material.dart';
 
+const kTitleStyle = TextStyle(
+  fontSize: 28,
+  fontWeight: FontWeight.bold,
+  letterSpacing: 1.5,
+  color: Colors.black,
+);
+const kNornalStyle = TextStyle(
+  fontSize: 15,
+  color: Colors.black,
+);
+
 class Utils {
   static final messengerKey = GlobalKey<ScaffoldMessengerState>();
   static showSnackBar(BuildContext context, String? text) {

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app_project_miaged/screens/authentication/register_page.dart';
 import 'package:flutter_app_project_miaged/screens/authentication/signin_page.dart';
 import 'package:flutter_app_project_miaged/screens/home_page.dart';
-import 'package:flutter_app_project_miaged/utils/auth_checker.dart';
+import 'package:flutter_app_project_miaged/auth_checker.dart';
 import 'package:flutter_app_project_miaged/utils/constants.dart';
 
 class AppRouter {
