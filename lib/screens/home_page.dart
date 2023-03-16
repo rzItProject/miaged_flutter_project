@@ -1,10 +1,9 @@
 // ignore_for_file: no_leading_underscores_for_local_identifiers
 
 import 'package:flutter/material.dart';
-import 'package:flutter_app_project_miaged/data/providers/auth_provider.dart';
 import 'package:flutter_app_project_miaged/data/providers/home_pages_provider.dart';
 import 'package:flutter_app_project_miaged/screens/pages/profil_page.dart';
-import 'package:flutter_app_project_miaged/screens/pages/purchase_page.dart';
+import 'package:flutter_app_project_miaged/screens/pages/product_page.dart';
 import 'package:flutter_app_project_miaged/screens/pages/shopping_cart_page.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 // import 'package:google_nav_bar/google_nav_bar.dart';
@@ -16,70 +15,71 @@ class HomePage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final _selectedIndex = ref.watch(indexProvider);
     final List<Widget> _pages = [
-      const PurchasePage(),
-      const ShoppingCart(),
+      const ProductPage(),
+      const ShoppingCartPage(),
       const ProfilPage(),
     ];
 
     // int _selectedIndex = 1;
 
     return Scaffold(
-        appBar: AppBar(
-          title: const Text('Riverpod'),
-          actions: [
-            IconButton(
-              icon: const Icon(Icons.logout),
-              onPressed: () {
-                ref.read(authRepositoryProvider).signOut();
-              },
-            ),
-          ],
-        ),
-        body: _pages[_selectedIndex],
-        bottomNavigationBar: NavigationBarTheme(
-          data: NavigationBarThemeData(
-              indicatorColor: Colors.blue.shade100,
-              labelTextStyle: MaterialStateProperty.all(const TextStyle(
-                fontSize: 14,
-                fontWeight: FontWeight.w500,
-              ))),
-          child: NavigationBar(
-            // height: 70,
-            backgroundColor: const Color(0xFFf1f5fb),
-            labelBehavior: NavigationDestinationLabelBehavior.onlyShowSelected,
-            animationDuration: const Duration(seconds: 1),
-            selectedIndex: _selectedIndex,
-            onDestinationSelected: (index) {
-              ref.read(indexProvider.notifier).state = index;
-            },
-            destinations: const [
-              NavigationDestination(
-                icon: Icon(Icons.shopping_bag_outlined),
-                selectedIcon: Icon(
-                  Icons.shopping_bag,
-                  color: Colors.white,
-                ),
-                label: 'Acheter',
-              ),
-              NavigationDestination(
-                icon: Icon(Icons.shopping_cart_outlined),
-                selectedIcon: Icon(
-                  Icons.shopping_cart,
-                  color: Colors.white,
-                ),
-                label: 'Panier',
-              ),
-              NavigationDestination(
-                icon: Icon(Icons.person_2_outlined),
-                selectedIcon: Icon(
-                  Icons.person_2,
-                  color: Colors.white,
-                ),
-                label: 'Profil',
-              ),
-            ],
+      body: _pages[_selectedIndex],
+      bottomNavigationBar: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
+        child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0),
+          decoration: BoxDecoration(
+            color: const Color(0xFFf1f5fb),
+            borderRadius: BorderRadius.circular(25),
           ),
-        ));
+          child: NavigationBarTheme(
+            data: NavigationBarThemeData(
+                indicatorColor: Colors.blue.shade100,
+                labelTextStyle: MaterialStateProperty.all(const TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.w500,
+                ))),
+            child: NavigationBar(
+              height: 60,
+              backgroundColor: const Color(0xFFf1f5fb),
+              labelBehavior:
+                  NavigationDestinationLabelBehavior.onlyShowSelected,
+              animationDuration: const Duration(seconds: 1),
+              selectedIndex: _selectedIndex,
+              onDestinationSelected: (index) {
+                ref.read(indexProvider.notifier).state = index;
+              },
+              destinations: const [
+                NavigationDestination(
+                  icon: Icon(Icons.shopping_bag_outlined),
+                  selectedIcon: Icon(
+                    Icons.shopping_bag,
+                    color: Colors.white,
+                  ),
+                  label: 'Acheter',
+                ),
+                NavigationDestination(
+                  icon: Icon(Icons.shopping_cart_outlined),
+                  selectedIcon: Icon(
+                    Icons.shopping_cart,
+                    color: Colors.white,
+                  ),
+                  label: 'Panier',
+                ),
+                NavigationDestination(
+                  icon: Icon(Icons.person_2_outlined),
+                  selectedIcon: Icon(
+                    Icons.person_2,
+                    color: Colors.white,
+                  ),
+                  label: 'Profil',
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
   }
 }
 

@@ -2,7 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app_project_miaged/firebase_options.dart';
 
-import 'package:flutter_app_project_miaged/utils/app_router.dart';
+import 'package:flutter_app_project_miaged/app_router.dart';
 import 'package:flutter_app_project_miaged/utils/constants.dart';
 import 'package:flutter_app_project_miaged/utils/utils.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
