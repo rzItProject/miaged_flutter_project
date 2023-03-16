@@ -1,23 +1,38 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app_project_miaged/data/providers/auth_provider.dart';
 import 'package:flutter_app_project_miaged/data/providers/database_provider.dart';
-import 'package:flutter_app_project_miaged/models/item.model.dart';
-import 'package:flutter_app_project_miaged/utils/constants.dart';
+import 'package:flutter_app_project_miaged/widgets/product_display.dart';
+import 'package:flutter_app_project_miaged/widgets/top_container.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_slidable/flutter_slidable.dart';
 
 class ProductPage extends ConsumerWidget {
   const ProductPage({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final databaseRepository = ref.watch(databaseRepositoryProvider);
     final itemsStream = ref.watch(itemsStreamProvider);
-    final notifier = ref.watch(itemsProvider.notifier);
     final items = itemsStream.value ?? [];
 
-    return Scaffold(
-      appBar: AppBar(
+    return SafeArea(
+      child: SingleChildScrollView(
+        padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 30.0),
+        child: Column(
+          children: <Widget>[
+            const TopContainer(
+              title: 'MIAGED',
+              searchBarTitle: "Rechercher des produits",
+            ),
+            SizedBox(
+              height: MediaQuery.of(context).size.height,
+              // height: 100,
+              child: ProductView(list: items),
+            ),
+          ],
+        ),
+      ),
+    );
+
+    /* return Scaffold(
+      appBar: AppBar( 
         title: const Text(product),
         actions: [
           IconButton(
@@ -56,32 +71,9 @@ class ProductPage extends ConsumerWidget {
                 ),
               ),
             );
-            /* return Slidable(
-              endActionPane: ActionPane(
-                motion: const ScrollMotion(),
-                children: [
-                  SlidableAction(
-                    onPressed: (c) {
-                      ref
-                          .read(databaseRepositoryProvider)
-                          .deleteItem(items[index].id);
-                    },
-                    backgroundColor: Colors.red,
-                    foregroundColor: Colors.white,
-                    icon: Icons.delete,
-                    label: 'Delete',
-                    spacing: 8,
-                  ),
-                ],
-              ),
-              child: ListTile(
-                title: Text(items[index].title),
-                subtitle: Text(items[index].size),
-              ),
-            ); */
           },
         ),
       ),
-    );
+    ); */
   }
 }

@@ -5,7 +5,6 @@ import 'package:flutter_app_project_miaged/data/providers/home_pages_provider.da
 import 'package:flutter_app_project_miaged/screens/pages/profil_page.dart';
 import 'package:flutter_app_project_miaged/screens/pages/product_page.dart';
 import 'package:flutter_app_project_miaged/screens/pages/shopping_cart_page.dart';
-import 'package:flutter_app_project_miaged/screens/pages/testProduct.dart';
 import 'package:flutter_app_project_miaged/utils/color.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -33,7 +32,8 @@ class HomeScreen extends ConsumerWidget {
             onPageChanged: (index) =>
                 ref.read(currentPageProvider.notifier).state = index,
             children: const [
-              TestProductPage(),
+              // TestProductPage(),
+              ProductPage(),
               ShoppingCartPage(),
               ProfilPage(),
             ],
