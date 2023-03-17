@@ -23,24 +23,15 @@ Future<void> main() async {
   ));
 }
 
-final navigatorKey = GlobalKey<NavigatorState>();
-
 class MainApp extends StatelessWidget {
   const MainApp({super.key});
 
   @override
   Widget build(BuildContext context) => MaterialApp(
         scaffoldMessengerKey: Utils.messengerKey,
-        navigatorKey: navigatorKey,
+        navigatorKey: Navigation.appNavigation,
         debugShowCheckedModeBanner: false,
         onGenerateRoute: AppRouter.onGenerateRoute,
         initialRoute: treePage,
-        // routes: {
-        //   treePage: (context) => const WidgetTree(),
-        //   signInPage: (context) => SignInPage(),
-        //   registerPage: (context) => RegisterPage(),
-        //   homePage: (context) => HomePage(),
-        // },
-        // home: const WidgetTree(),
       );
 }

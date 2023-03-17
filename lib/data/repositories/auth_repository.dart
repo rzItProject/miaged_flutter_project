@@ -1,6 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app_project_miaged/main.dart';
 
 import 'package:flutter_app_project_miaged/utils/constants.dart';
 import 'package:flutter_app_project_miaged/utils/utils.dart';
@@ -45,7 +44,7 @@ class AuthRepository {
       }
     }
     // navigatorKey.currentState!.popUntil((route) => route.isFirst);
-    navigatorKey.currentState!
+    Navigation.appNavigation.currentState!
         .pushNamedAndRemoveUntil(treePage, (Route<dynamic> route) => false);
   }
 
@@ -81,7 +80,7 @@ class AuthRepository {
     }
     // navigatorKey.currentState!.popUntil((route) => route.isFirst);
     // navigatorKey.currentState!.pushReplacementNamed(treePage);
-    navigatorKey.currentState!
+    Navigation.appNavigation.currentState!
         .pushNamedAndRemoveUntil(treePage, (Route<dynamic> route) => false);
   }
 

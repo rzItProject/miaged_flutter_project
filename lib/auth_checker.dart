@@ -23,6 +23,26 @@ class AuthChecker extends ConsumerWidget {
       error: (error, stackTrace) => SignInPage(),
     );
   }
+
+  /* @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final authState = ref.watch(authStateProvider);
+
+    if (authState.value != null) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        Navigation.appNavigation.currentState!.pushReplacementNamed(homePage);
+      });
+    } else {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        Navigation.nestedNavigation = GlobalKey();
+
+        Navigation.appNavigation.currentState!
+            .pushNamedAndRemoveUntil(signInPage, (route) => route.isFirst);
+      });
+    }
+
+    return const SizedBox.shrink();
+  } */
 }
 
 class SplachScreen extends StatelessWidget {

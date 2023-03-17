@@ -20,22 +20,47 @@ class DatabaseRepository {
           size: doc['size'],
           price: doc['price'],
           url: doc['url'],
+          category: doc['category'],
         );
       }).toList();
     });
   }
 
-  Future<void> createItem(
-      String title, String size, String price, String url) async {
-    var item = Item(id: 'id', title: title, size: size, price: price, url: url);
+  Future<List<Item>> getItemByCategory(String category) async {
+    final QuerySnapshot querySnapshot = await FirebaseFirestore.instance
+        .collection(itemCollection)
+        .where('category', isEqualTo: category)
+        .get();
+    return querySnapshot.docs
+        .map((doc) => Item(
+              id: doc.id,
+              title: doc['title'],
+              size: doc['size'],
+              price: doc['price'],
+              url: doc['url'],
+              category: doc['category'],
+            ))
+        .toList();
+  }
+
+  Future<List<DocumentSnapshot>> getItemsByCategory(String category) async {
+    QuerySnapshot snapshot = await _firestore.collection(itemCollection).where('category', isEqualTo: category).get();
+    return snapshot.docs;
+  }
+
+  Future<void> createItem(String title, String size, String price, String url,
+      String category) async {
+    var item = Item(
+        id: 'id',
+        title: title,
+        size: size,
+        price: price,
+        url: url,
+        category: category);
     await _firestore.collection(itemCollection).add(item.toJson());
   }
 
   Future<void> deleteItem(String uid) async {
     await _firestore.collection(itemCollection).doc(uid).delete();
-  }
-
-  Future<QuerySnapshot<Map<String, dynamic>>> getItem() async {
-    return await _firestore.collection(itemCollection).get();
   }
 }

@@ -1,16 +1,41 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app_project_miaged/utils/data.dart';
 import 'package:flutter_app_project_miaged/data/providers/database_provider.dart';
 import 'package:flutter_app_project_miaged/widgets/product_display.dart';
 import 'package:flutter_app_project_miaged/widgets/top_container.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class ProductPage extends ConsumerWidget {
+class ProductPage extends ConsumerStatefulWidget {
   const ProductPage({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<ConsumerStatefulWidget> createState() => _ProductPageSate();
+}
+
+class _ProductPageSate extends ConsumerState<ProductPage>
+    with SingleTickerProviderStateMixin {
+  late TabController tabController;
+  int selectedValue = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    tabController =
+        TabController(length: categories.length, vsync: this, initialIndex: 0);
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    tabController.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     final itemsStream = ref.watch(itemsStreamProvider);
-    final items = itemsStream.value ?? [];
+    final allItems = itemsStream.value ?? [];
+    final category = ref.watch(categoryProvider);
+    final itemsByCategory = ref.watch(itemsByCategoryProvider(category));
 
     return SafeArea(
       child: SingleChildScrollView(
@@ -21,59 +46,41 @@ class ProductPage extends ConsumerWidget {
               title: 'MIAGED',
               searchBarTitle: "Rechercher des produits",
             ),
+            Container(
+              margin: const EdgeInsets.only(bottom: 10),
+              child: TabBar(
+                controller: tabController,
+                isScrollable: true,
+                indicatorSize: TabBarIndicatorSize.label,
+                labelColor: Colors.black54,
+                onTap: (index) {
+                  ref.read(categoryProvider.notifier).state =
+                      categories[index].category;
+                },
+                tabs: [
+                  Tab(text: categories[0].category),
+                  Tab(text: categories[1].category),
+                  Tab(text: categories[2].category),
+                  Tab(text: categories[3].category),
+                ],
+              ),
+            ),
             SizedBox(
               height: MediaQuery.of(context).size.height,
-              // height: 100,
-              child: ProductView(list: items),
+              child: itemsByCategory.when(
+                data: (items) {
+                  // print(category);
+                  // print(items.length);
+                  if (category == 'tous') return ProductView(list: allItems);
+                  return ProductView(list: items);
+                },
+                loading: () => const CircularProgressIndicator(),
+                error: (err, stackTrace) => Text('Error: $err'),
+              ),
             ),
           ],
         ),
       ),
     );
-
-    /* return Scaffold(
-      appBar: AppBar( 
-        title: const Text(product),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.logout),
-            onPressed: () {
-              ref.read(authRepositoryProvider).signOut();
-            },
-          ),
-        ],
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          // Navigator.of(context).pushNamed(Routes.favourite);
-        },
-        child: const Icon(Icons.shopping_bag_outlined),
-      ),
-      body: Container(
-        // height: 140,
-        child: ListView.builder(
-          itemCount: items.length,
-          // scrollDirection: Axis.horizontal,
-          itemBuilder: (context, index) {
-            return Padding(
-              // padding: const EdgeInsets.symmetric(horizontal: 8.0),
-              padding: const EdgeInsets.all(10),
-              child: Container(
-                width: 200,
-                height: 200,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  color: Colors.red,
-                ),
-                child: ListTile(
-                  title: Text(items[index].title),
-                  subtitle: Text(items[index].url),
-                ),
-              ),
-            );
-          },
-        ),
-      ),
-    ); */
   }
 }
