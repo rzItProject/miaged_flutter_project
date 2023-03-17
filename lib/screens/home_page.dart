@@ -2,9 +2,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_app_project_miaged/data/providers/home_pages_provider.dart';
-import 'package:flutter_app_project_miaged/screens/pages/profil_page.dart';
-import 'package:flutter_app_project_miaged/screens/pages/product_page.dart';
-import 'package:flutter_app_project_miaged/screens/pages/shopping_cart_page.dart';
+import 'package:flutter_app_project_miaged/screens/home_navigation/profil_page.dart';
+import 'package:flutter_app_project_miaged/screens/home_navigation/product_page.dart';
+import 'package:flutter_app_project_miaged/screens/home_navigation/shopping_cart_page.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 // import 'package:google_nav_bar/google_nav_bar.dart';
 

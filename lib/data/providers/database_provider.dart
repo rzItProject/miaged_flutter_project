@@ -5,7 +5,7 @@ import 'package:flutter_app_project_miaged/models/item.model.dart';
 import 'package:flutter_app_project_miaged/services/items_notifier.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-final categoryProvider = StateProvider<String>((ref) => 'chaussures');
+final categoryProvider = StateProvider<String>((ref) => 'tous');
 
 final databaseRepositoryProvider = Provider<DatabaseRepository>(
     (ref) => DatabaseRepository(FirebaseFirestore.instance));

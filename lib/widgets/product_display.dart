@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app_project_miaged/models/item.model.dart';
+import 'package:flutter_app_project_miaged/screens/detail_page.dart';
 import 'package:flutter_app_project_miaged/utils/utils.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
@@ -26,60 +27,70 @@ class ProductView extends StatelessWidget {
   Widget singleItemWidget(BuildContext context, Item item, bool lastItem) {
     return Column(
       children: [
-        Stack(
-          children: [
-            Container(
-              padding: const EdgeInsets.only(bottom: 10.0),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(28.0),
-                color: Colors.white,
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black.withOpacity(0.1),
-                    blurRadius: 5,
-                    spreadRadius: 1,
-                    offset: const Offset(1, 1),
-                  ),
-                ],
+        GestureDetector(
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => DetailPage(item: item),
               ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(28.0),
-                    child: CachedNetworkImage(
-                      imageUrl: item.url,
-                      fit: BoxFit.cover,
-                      placeholder: (context, url) =>
-                          const CircularProgressIndicator(),
-                      errorWidget: (context, url, error) =>
-                          const Icon(Icons.error),
+            );
+          },
+          child: Stack(
+            children: [
+              Container(
+                padding: const EdgeInsets.only(bottom: 10.0),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(28.0),
+                  color: Colors.white,
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withOpacity(0.1),
+                      blurRadius: 5,
+                      spreadRadius: 1,
+                      offset: const Offset(1, 1),
                     ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(
-                      left: 8.0,
-                      right: 8.0,
-                      top: 10.0,
+                  ],
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(28.0),
+                      child: CachedNetworkImage(
+                        imageUrl: item.url,
+                        fit: BoxFit.cover,
+                        placeholder: (context, url) =>
+                            const CircularProgressIndicator(),
+                        errorWidget: (context, url, error) =>
+                            const Icon(Icons.error),
+                      ),
                     ),
-                    child: Text(
-                      item.title,
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                      style: kTitleStyle.copyWith(fontSize: 15),
+                    Padding(
+                      padding: const EdgeInsets.only(
+                        left: 8.0,
+                        right: 8.0,
+                        top: 10.0,
+                      ),
+                      child: Text(
+                        item.title,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: kTitleStyle.copyWith(fontSize: 15),
+                      ),
                     ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 8.0, right: 8.0),
-                    child: Text(
-                      "${item.price} €",
-                    ),
-                  )
-                ],
+                    Padding(
+                      padding: const EdgeInsets.only(left: 8.0, right: 8.0),
+                      child: Text(
+                        "${item.price} €",
+                      ),
+                    )
+                  ],
+                ),
               ),
-            ),
-            // ajout favoris
-          ],
+              // ajout favoris
+            ],
+          ),
         ),
         SizedBox(
           height:
