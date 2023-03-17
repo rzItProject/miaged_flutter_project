@@ -30,3 +30,8 @@ class Utils {
       ..showSnackBar(snackBar);
   }
 }
+
+class Navigation {
+  static GlobalKey<NavigatorState> appNavigation = GlobalKey();
+  static GlobalKey<NavigatorState> nestedNavigation = GlobalKey();
+}
