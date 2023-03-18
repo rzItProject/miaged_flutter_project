@@ -1,6 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app_project_miaged/data/providers/auth_provider.dart';
 import 'package:flutter_app_project_miaged/utils/color.dart';
 import 'package:flutter_app_project_miaged/utils/utils.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -69,7 +68,7 @@ class TopContainer extends ConsumerWidget {
             alignment: Alignment.topCenter,
           ),
         ),
-        const SizedBox(width: 10),
+        /* const SizedBox(width: 10),
         Container(
           height: 40,
           width: 40,
@@ -84,7 +83,7 @@ class TopContainer extends ConsumerWidget {
               ref.read(authRepositoryProvider).signOut();
             },
           ),
-        ),
+        ), */
       ],
     );
   }

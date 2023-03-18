@@ -1,7 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app_project_miaged/data/providers/cart_provider.dart';
-import 'package:flutter_app_project_miaged/models/item.model.dart';
+import 'package:flutter_app_project_miaged/data/models/item.model.dart';
 import 'package:flutter_app_project_miaged/utils/utils.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -30,7 +30,7 @@ class DetailBodyView extends ConsumerWidget {
                   ),
                 ),
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 15.0),
+                  padding: const EdgeInsets.symmetric(horizontal: 20.0),
                   child: Column(
                     children: [
                       priceAndSize(context, item),
@@ -93,7 +93,7 @@ class DetailBodyView extends ConsumerWidget {
               ),
               onPressed: () {},
               child: Text(
-                'Acheter maintenant'.toUpperCase(),
+                'Acheter'.toUpperCase(),
               ),
             ),
           ),
@@ -114,7 +114,7 @@ class DetailBodyView extends ConsumerWidget {
 
   Padding productTitleAndImage(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
+      padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

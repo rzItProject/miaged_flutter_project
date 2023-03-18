@@ -1,9 +1,9 @@
 // ignore_for_file: no_leading_underscores_for_local_identifiers
 
 import 'package:flutter/material.dart';
-import 'package:flutter_app_project_miaged/screens/home_navigation/profil_page.dart';
-import 'package:flutter_app_project_miaged/screens/home_navigation/product_page.dart';
-import 'package:flutter_app_project_miaged/screens/home_navigation/shopping_cart_page.dart';
+import 'package:flutter_app_project_miaged/screens/profil_page.dart';
+import 'package:flutter_app_project_miaged/screens/product_page.dart';
+import 'package:flutter_app_project_miaged/screens/shopping_cart_page.dart';
 import 'package:flutter_app_project_miaged/services/current_home_page_notifier.dart';
 import 'package:flutter_app_project_miaged/utils/color.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -15,8 +15,6 @@ class HomeScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    // final currentPage = ref.watch(currentPageProvider.notifier).state;
-    // final pageController = PageController(initialPage: currentPage);
     final currentPage = ref.watch(currentPageProvider);
     final tabBarIcons = [
       FontAwesomeIcons.house,

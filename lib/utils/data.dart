@@ -1,4 +1,4 @@
-import 'package:flutter_app_project_miaged/models/category.dart';
+import 'package:flutter_app_project_miaged/data/models/category.dart';
 
 final categories = [
   ItemCategory(

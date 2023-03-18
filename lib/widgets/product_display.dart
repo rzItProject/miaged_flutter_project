@@ -1,6 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app_project_miaged/models/item.model.dart';
+import 'package:flutter_app_project_miaged/data/models/item.model.dart';
 import 'package:flutter_app_project_miaged/screens/detail_page.dart';
 import 'package:flutter_app_project_miaged/utils/utils.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
@@ -15,6 +15,7 @@ class ProductView extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 10.0),
       crossAxisSpacing: 15,
       mainAxisSpacing: 10,
+      // scrollDirection: Axis.horizontal,
       crossAxisCount: 2,
       itemCount: list.length,
       itemBuilder: (context, index) {
