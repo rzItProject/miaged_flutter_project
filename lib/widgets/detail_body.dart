@@ -1,15 +1,17 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app_project_miaged/data/providers/cart_provider.dart';
 import 'package:flutter_app_project_miaged/models/item.model.dart';
 import 'package:flutter_app_project_miaged/utils/utils.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-class DetailBodyView extends StatelessWidget {
+class DetailBodyView extends ConsumerWidget {
   const DetailBodyView({super.key, required this.item});
   final Item item;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     Size size = MediaQuery.of(context).size;
     return Column(
       children: [
@@ -34,8 +36,8 @@ class DetailBodyView extends StatelessWidget {
                       priceAndSize(context, item),
                       const SizedBox(height: 15.0),
                       description(),
-                      Spacer(),
-                      addToCart(),
+                      const Spacer(),
+                      addToCart(ref, context),
                       const SizedBox(height: 40.0),
                     ],
                   ),
@@ -49,7 +51,7 @@ class DetailBodyView extends StatelessWidget {
     );
   }
 
-  Row addToCart() {
+  Row addToCart(WidgetRef ref, BuildContext context) {
     return Row(
       children: [
         Container(
@@ -62,10 +64,19 @@ class DetailBodyView extends StatelessWidget {
             shape: BoxShape.rectangle,
             color: Colors.black,
           ),
-          child: const Icon(
-            FontAwesomeIcons.cartShopping,
+          child: IconButton(
+            icon: const Icon(FontAwesomeIcons.cartShopping),
             color: Colors.white,
-            size: 24,
+            onPressed: () {
+              ref.read(cartStateProvider.notifier).addItemToCart(item);
+              showDialog(
+                context: context,
+                builder: (context) => const AlertDialog(
+                  title: Text("Article ajouté au panier avec succes !"),
+                  content: Text('Vérifiez votre panier'),
+                ),
+              );
+            },
           ),
         ),
         Expanded(
