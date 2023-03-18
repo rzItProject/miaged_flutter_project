@@ -1,7 +1,7 @@
 //Entry point of shared data
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_app_project_miaged/data/repositories/database_repository.dart';
-import 'package:flutter_app_project_miaged/models/item.model.dart';
+import 'package:flutter_app_project_miaged/data/models/item.model.dart';
 import 'package:flutter_app_project_miaged/services/items_notifier.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 

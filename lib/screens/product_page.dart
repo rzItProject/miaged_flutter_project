@@ -58,10 +58,10 @@ class _ProductPageSate extends ConsumerState<ProductPage>
                       categories[index].category;
                 },
                 tabs: [
-                  Tab(text: categories[0].category),
-                  Tab(text: categories[1].category),
-                  Tab(text: categories[2].category),
-                  Tab(text: categories[3].category),
+                  Tab(text: categories[0].category.toUpperCase()),
+                  Tab(text: categories[1].category.toUpperCase()),
+                  Tab(text: categories[2].category.toUpperCase()),
+                  Tab(text: categories[3].category.toUpperCase()),
                 ],
               ),
             ),

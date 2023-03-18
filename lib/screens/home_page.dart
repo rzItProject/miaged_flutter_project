@@ -2,11 +2,11 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_app_project_miaged/data/providers/home_pages_provider.dart';
-import 'package:flutter_app_project_miaged/screens/home_navigation/profil_page.dart';
-import 'package:flutter_app_project_miaged/screens/home_navigation/product_page.dart';
-import 'package:flutter_app_project_miaged/screens/home_navigation/shopping_cart_page.dart';
+import 'package:flutter_app_project_miaged/screens/profil_page.dart';
+import 'package:flutter_app_project_miaged/screens/product_page.dart';
+import 'package:flutter_app_project_miaged/screens/shopping_cart_page.dart';
+import 'package:flutter_app_project_miaged/utils/color.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-// import 'package:google_nav_bar/google_nav_bar.dart';
 
 class HomePage extends ConsumerWidget {
   const HomePage({super.key});
@@ -20,28 +20,29 @@ class HomePage extends ConsumerWidget {
       const ProfilPage(),
     ];
 
-    // int _selectedIndex = 1;
-
     return Scaffold(
+      backgroundColor: kBluegroundColor,
       body: _pages[_selectedIndex],
       bottomNavigationBar: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
         child: Container(
           padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0),
           decoration: BoxDecoration(
-            color: const Color(0xFFf1f5fb),
-            borderRadius: BorderRadius.circular(25),
+            color: kBackgroundColor,
+            borderRadius: BorderRadius.circular(40),
           ),
           child: NavigationBarTheme(
             data: NavigationBarThemeData(
                 indicatorColor: Colors.blue.shade100,
                 labelTextStyle: MaterialStateProperty.all(const TextStyle(
+                  color: Colors.white,
                   fontSize: 14,
                   fontWeight: FontWeight.w500,
                 ))),
             child: NavigationBar(
               height: 60,
-              backgroundColor: const Color(0xFFf1f5fb),
+              // backgroundColor: const Color(0xFFf1f5fb),
+              backgroundColor: Colors.transparent,
               labelBehavior:
                   NavigationDestinationLabelBehavior.onlyShowSelected,
               animationDuration: const Duration(seconds: 1),
@@ -51,7 +52,10 @@ class HomePage extends ConsumerWidget {
               },
               destinations: const [
                 NavigationDestination(
-                  icon: Icon(Icons.shopping_bag_outlined),
+                  icon: Icon(
+                    Icons.shopping_bag,
+                    color: Colors.white,
+                  ),
                   selectedIcon: Icon(
                     Icons.shopping_bag,
                     color: Colors.white,
@@ -59,7 +63,10 @@ class HomePage extends ConsumerWidget {
                   label: 'Acheter',
                 ),
                 NavigationDestination(
-                  icon: Icon(Icons.shopping_cart_outlined),
+                  icon: Icon(
+                    Icons.shopping_cart,
+                    color: Colors.white,
+                  ),
                   selectedIcon: Icon(
                     Icons.shopping_cart,
                     color: Colors.white,
@@ -67,7 +74,10 @@ class HomePage extends ConsumerWidget {
                   label: 'Panier',
                 ),
                 NavigationDestination(
-                  icon: Icon(Icons.person_2_outlined),
+                  icon: Icon(
+                    Icons.person_2,
+                    color: Colors.white,
+                  ),
                   selectedIcon: Icon(
                     Icons.person_2,
                     color: Colors.white,
