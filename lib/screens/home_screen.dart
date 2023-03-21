@@ -29,7 +29,6 @@ class HomeScreen extends ConsumerWidget {
             IndexedStack(
               index: currentPage,
               children: const [
-                // TestProductPage(),
                 ProductPage(),
                 ShoppingCartPage(),
                 ProfilPage(),

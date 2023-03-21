@@ -17,11 +17,6 @@ final itemsStreamProvider = StreamProvider.autoDispose<List<Item>>((ref) {
   return ref.watch(databaseRepositoryProvider).getItems();
 });
 
-/* final itemByCategoryProvider =
-    FutureProvider.family<List<Item>, String>((ref, category) {
-  return ref.watch(databaseRepositoryProvider).getItemByCategory(category);
-}); */
-
 final itemsByCategoryProvider =
     FutureProvider.family<List<Item>, String>((ref, category) async {
   final api = ref.watch(databaseRepositoryProvider);
@@ -35,6 +30,7 @@ final itemsByCategoryProvider =
           price: doc["price"],
           url: doc["url"],
           category: doc["category"],
+          brand: doc["brand"],
         ),
       )
       .toList();

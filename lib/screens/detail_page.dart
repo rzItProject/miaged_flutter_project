@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app_project_miaged/data/models/item.model.dart';
 import 'package:flutter_app_project_miaged/utils/color.dart';
-import 'package:flutter_app_project_miaged/widgets/detail_body.dart';
+import 'package:flutter_app_project_miaged/widgets/product_detail_content.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class DetailPage extends StatelessWidget {

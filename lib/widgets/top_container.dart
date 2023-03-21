@@ -1,18 +1,15 @@
-import 'package:cached_network_image/cached_network_image.dart';
+// import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app_project_miaged/utils/color.dart';
+// import 'package:flutter_app_project_miaged/utils/color.dart';
 import 'package:flutter_app_project_miaged/utils/utils.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class TopContainer extends ConsumerWidget {
   final String title;
-  final String searchBarTitle;
 
   const TopContainer({
     super.key,
     required this.title,
-    required this.searchBarTitle,
   });
 
   @override
@@ -26,7 +23,7 @@ class TopContainer extends ConsumerWidget {
             fontWeight: FontWeight.w500,
           ),
         ),
-        const Spacer(),
+        /* const Spacer(),
         Container(
           height: 40,
           width: 40,
@@ -34,8 +31,8 @@ class TopContainer extends ConsumerWidget {
           decoration: BoxDecoration(
             shape: BoxShape.circle,
             color: kGreygroundColor.withOpacity(0.8),
-          ),
-          child: Stack(
+          ), */
+        /* child: Stack(
             children: [
               const Icon(
                 FontAwesomeIcons.bell,
@@ -54,9 +51,9 @@ class TopContainer extends ConsumerWidget {
                 ),
               )
             ],
-          ),
-        ),
-        const SizedBox(width: 10),
+          ), 
+        ),*/
+        /* const SizedBox(width: 10),
         ClipRRect(
           borderRadius: BorderRadius.circular(30.0),
           child: CachedNetworkImage(
@@ -67,9 +64,9 @@ class TopContainer extends ConsumerWidget {
             fit: BoxFit.cover,
             alignment: Alignment.topCenter,
           ),
-        ),
-        /* const SizedBox(width: 10),
-        Container(
+        ), */
+        // const SizedBox(width: 10),
+        /* Container(
           height: 40,
           width: 40,
           alignment: Alignment.center,

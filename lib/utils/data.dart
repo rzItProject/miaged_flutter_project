@@ -22,3 +22,7 @@ final categories = [
     count: '10',
   ),
 ];
+
+getCategoryIndex(String category) {
+  return categories.indexWhere((element) => element.category == category);
+}
