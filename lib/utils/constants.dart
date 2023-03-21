@@ -9,3 +9,4 @@ const String product = 'Acheter';
 
 //database collection
 const itemCollection = 'items';
+const customerCollection = 'customers';

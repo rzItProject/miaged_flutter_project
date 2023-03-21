@@ -21,10 +21,16 @@ class DatabaseRepository {
           price: doc['price'],
           url: doc['url'],
           category: doc['category'],
+          brand: doc['brand'],
         );
       }).toList();
     });
   }
+
+  /*  Stream<List<Item>> getItems() {
+    return _firestore.collection(itemCollection).snapshots().map((snapshot) =>
+        snapshot.docs.map((doc) => Item.fromJson(doc.data())).toList());
+  } */
 
   Future<List<Item>> getItemByCategory(String category) async {
     final QuerySnapshot querySnapshot = await FirebaseFirestore.instance
@@ -39,24 +45,29 @@ class DatabaseRepository {
               price: doc['price'],
               url: doc['url'],
               category: doc['category'],
+              brand: doc['brand'],
             ))
         .toList();
   }
 
   Future<List<DocumentSnapshot>> getItemsByCategory(String category) async {
-    QuerySnapshot snapshot = await _firestore.collection(itemCollection).where('category', isEqualTo: category).get();
+    QuerySnapshot snapshot = await _firestore
+        .collection(itemCollection)
+        .where('category', isEqualTo: category)
+        .get();
     return snapshot.docs;
   }
 
   Future<void> createItem(String title, String size, String price, String url,
-      String category) async {
+      String category, String brand) async {
     var item = Item(
         id: 'id',
         title: title,
         size: size,
         price: price,
         url: url,
-        category: category);
+        category: category,
+        brand: brand);
     await _firestore.collection(itemCollection).add(item.toJson());
   }
 

@@ -1,33 +1,40 @@
+// import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app_project_miaged/data/models/customer.model.dart';
+import 'package:flutter_app_project_miaged/data/repositories/customer_repository.dart';
 
 import 'package:flutter_app_project_miaged/utils/constants.dart';
 import 'package:flutter_app_project_miaged/utils/utils.dart';
 
 class AuthRepository {
-  AuthRepository(this._auth);
+  AuthRepository(this._auth, this.customerRepository);
 
   final FirebaseAuth _auth;
+  final CustomerRepository customerRepository;
 
   User? get currentUser => _auth.currentUser;
 
   Stream<User?> get onAuthStateChanges => _auth.authStateChanges();
 
   // Sign in with email and password
-  Future<void> signIn({
-    required String email,
-    required String password,
-    required BuildContext context,
-  }) async {
+  Future<User?> signIn(
+      {required String email,
+      required String password,
+      required BuildContext context}) async {
     showDialog(
       context: context,
-      // barrierDismissible: false,
-      builder: (context) => const Center(
-        child: CircularProgressIndicator(),
-      ),
+      builder: (context) => const Center(child: CircularProgressIndicator()),
     );
     try {
-      await _auth.signInWithEmailAndPassword(email: email, password: password);
+      // ignore: unused_local_variable
+      UserCredential userCredential = await _auth.signInWithEmailAndPassword(
+          email: email, password: password);
+
+      Navigation.appNavigation.currentState!
+          .pushNamedAndRemoveUntil(treePage, (Route<dynamic> route) => false);
+
+      return userCredential.user;
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
         const message =
@@ -46,23 +53,38 @@ class AuthRepository {
     // navigatorKey.currentState!.popUntil((route) => route.isFirst);
     Navigation.appNavigation.currentState!
         .pushNamedAndRemoveUntil(treePage, (Route<dynamic> route) => false);
+    return null;
   }
 
-  Future<void> register({
-    required String email,
-    required String password,
-    required BuildContext context,
-  }) async {
+  Future<User?> register(
+      {required String email,
+      required String password,
+      required BuildContext context}) async {
     showDialog(
       context: context,
-      // barrierDismissible: false,
-      builder: (context) => const Center(
-        child: CircularProgressIndicator(),
-      ),
+      builder: (context) => const Center(child: CircularProgressIndicator()),
     );
+
     try {
-      await _auth.createUserWithEmailAndPassword(
-          email: email, password: password);
+      // ignore: unused_local_variable
+      UserCredential userCredential = await _auth
+          .createUserWithEmailAndPassword(email: email, password: password);
+
+      final Customer newCustomer = Customer(
+        id: userCredential.user!.uid,
+        // userid: userCredential.user!.uid,
+        fullname: 'Renseigner votre nom et prenom',
+        email: email,
+        password: password,
+        birthDate: 'Renseigner votre date de naissance',
+        address: 'Renseigner votre adresse',
+        zipcode: '00000',
+        city: 'Renseigner votre ville',
+      );
+      await customerRepository.addCustomer(newCustomer);
+      Navigation.appNavigation.currentState!
+          .pushNamedAndRemoveUntil(treePage, (Route<dynamic> route) => false);
+      return userCredential.user;
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
         Utils.showSnackBar(
@@ -82,6 +104,7 @@ class AuthRepository {
     // navigatorKey.currentState!.pushReplacementNamed(treePage);
     Navigation.appNavigation.currentState!
         .pushNamedAndRemoveUntil(treePage, (Route<dynamic> route) => false);
+    return null;
   }
 
   Future<void> signOut() async {

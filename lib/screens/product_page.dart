@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app_project_miaged/utils/data.dart';
 import 'package:flutter_app_project_miaged/data/providers/database_provider.dart';
-import 'package:flutter_app_project_miaged/widgets/product_display.dart';
-import 'package:flutter_app_project_miaged/widgets/top_container.dart';
+import 'package:flutter_app_project_miaged/utils/utils.dart';
+import 'package:flutter_app_project_miaged/widgets/product_gridview.dart';
+// import 'package:flutter_app_project_miaged/widgets/top_container.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class ProductPage extends ConsumerStatefulWidget {
@@ -20,8 +21,11 @@ class _ProductPageSate extends ConsumerState<ProductPage>
   @override
   void initState() {
     super.initState();
-    tabController =
-        TabController(length: categories.length, vsync: this, initialIndex: 0);
+    final category = ref.read(categoryProvider);
+    tabController = TabController(
+        length: categories.length,
+        vsync: this,
+        initialIndex: getCategoryIndex(category));
   }
 
   @override
@@ -37,15 +41,22 @@ class _ProductPageSate extends ConsumerState<ProductPage>
     final category = ref.watch(categoryProvider);
     final itemsByCategory = ref.watch(itemsByCategoryProvider(category));
 
-    return SafeArea(
-      child: SingleChildScrollView(
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Acheter',
+            style: kTitleStyle.copyWith(
+                color: Colors.white,
+                fontSize: 24,
+                fontWeight: FontWeight.w500)),
+        backgroundColor: Colors.black54,
+      ),
+      body: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 30.0),
         child: Column(
           children: <Widget>[
-            const TopContainer(
+            /* const TopContainer(
               title: 'MIAGED',
-              searchBarTitle: "Rechercher des produits",
-            ),
+            ), */
             Container(
               margin: const EdgeInsets.only(bottom: 10),
               child: TabBar(
