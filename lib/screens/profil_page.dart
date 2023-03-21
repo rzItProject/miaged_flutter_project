@@ -333,13 +333,13 @@ class ProfilPage extends ConsumerWidget {
                     formKey.currentState!.save();
                     final updatedCustomer = Customer(
                       id: customer.id,
-                      fullname: name,
-                      email: email,
-                      password: password,
-                      address: address,
-                      city: city,
-                      zipcode: zipCode,
-                      birthDate: birthday,
+                      fullname: name == '' ? customer.fullname : name,
+                      email: email == '' ? customer.email : email,
+                      password: password == '' ? customer.password : password,
+                      address: address == '' ? customer.address : address,
+                      city: city == '' ? customer.city : city,
+                      zipcode: zipCode == '' ? customer.zipcode : zipCode,
+                      birthDate: birthday == '' ? customer.birthDate : birthday,
                     );
                     ref
                         .read(customerRepositoryProvider)
