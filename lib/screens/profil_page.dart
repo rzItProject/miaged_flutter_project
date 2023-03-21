@@ -98,7 +98,7 @@ class ProfilPage extends ConsumerWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const FieldTitle(title: 'Votre non et prenom'),
+            const FieldTitle(title: 'Votre nom et prenom'),
             TextFormField(
               initialValue: customer.fullname,
               decoration: InputDecoration(

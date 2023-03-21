@@ -15,20 +15,12 @@ Enfin pour gérer les différents état du projet, j'ai décidé d'apprendre à 
 
 ## Interfaces utilisateurs
 
-- Inscription
-![This is an image](/assets/readme/register.png)
-- Connexion
-![This is an image](/assets/readme/login.png)
-- Liste de produit
-![This is an image](/assets/readme/list_product.png)
-- Détail du produit
-![This is an image](/assets/readme/detail.png)
-- Ajout dans le panier
-![This is an image](/assets/readme/cart_item.png)
-- Ajout avec succés au panier
-![This is an image](/assets/readme/succes_add_cart.png)
-- Profil 
-![This is an image](/assets/readme/profil.png)
+/!\ L'application n'est pas responsive (pas eu le temps de le faire). Voici les caractérisques de l'écran sur lequel elle a été: 
+- Pixel 6 
+- 1080*2400 
+- 6.4"
+
+![This is an image](/assets/readme/ui.png)
 
 
 ## Les fonctionnalités implémentées en bonus par rapport a ce qui était demandé
@@ -60,3 +52,15 @@ Pour développer ce projet j'ai utilisé plusieurs bibliothèques dart:
   - *flutter_riverpod: ^2.3.1** →  permet de bénéficier  du gestionnaire d'état riverpod
   - **flutter_staggered_grid_view: ^0.6.2** → utilisé pour  gérer l'affichage des éléments sur une grid
   - **font_awesome_flutter: ^10.4.0** → permet d'accéder à un large panel d'icon
+
+## Version android 
+
+- minSdkVersion 21
+
+minSdkVersion spécifie le niveau d'API minimum requis par l'application pour s'exécuter, ce qui signifie que l'application ne sera disponible que sur les appareils exécutant des versions d'Android égales ou supérieures à la version spécifiée. Dans ce cas, minSdkVersion 21 signifie que l'application ne fonctionnera que sur des appareils avec Android 5.0 (Lollipop) ou supérieur.
+
+- targetSdkVersion 33
+
+targetSdkVersion spécifie le niveau d'API pour lequel l'application a été conçue, ce qui signifie que l'application se comportera et adaptera son comportement à celui du système Android jusqu'à la version spécifiée. Dans ce cas, targetSdkVersion 33 signifie que l'application a été conçue pour fonctionner sur Android 12 et peut profiter des nouvelles fonctionnalités disponibles dans Android 12.
+
+
