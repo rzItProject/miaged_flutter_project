@@ -18,7 +18,7 @@ Enfin pour gérer les différents état du projet, j'ai décidé d'apprendre à 
 - Inscription
 ![This is an image](/assets/readme/register.png)
 - Connexion
-![This is an image](/assets/readme/login.png.png)
+![This is an image](/assets/readme/login.png)
 - Liste de produit
 ![This is an image](/assets/readme/list_product.png)
 - Détail du produit
